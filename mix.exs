@@ -40,17 +40,17 @@ try do
     end
 
     def project() do
-      github_url = "https://github.com/access-company/antikythera_instance_example"
+      github_url = "https://github.com/wakame-tech/antikythera_k8s"
       base_settings = Antikythera.MixCommon.common_project_settings() |> Keyword.replace!(:elixir, @elixir_version)
       [
-        app:             :antikythera_instance_example,
+        app:             :antikythera_k8s,
         version:         Antikythera.MixCommon.version_with_last_commit_info("0.1.0"),
         start_permanent: Mix.env() == :prod,
         deps:            deps(),
         source_url:      github_url,
         homepage_url:    github_url,
         releases: [
-          antikythera_instance_example: &Mix.Tasks.AntikytheraCore.GenerateRelease.config_for_mix_release/0
+          antikythera_k8s: &Mix.Tasks.AntikytheraCore.GenerateRelease.config_for_mix_release/0
         ]
       ] ++ base_settings
     end

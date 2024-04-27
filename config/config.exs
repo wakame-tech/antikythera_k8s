@@ -19,5 +19,5 @@ if File.regular?(antikythera_config_file) do
 end
 
 config :antikythera, [
-  antikythera_instance_name: :antikythera_instance_example,
+  antikythera_instance_name: :antikythera_k8s,
 ]
