@@ -9,4 +9,3 @@ erl_crash.dump
 *.ez
 *.swp
 *~
-.elixir_ls
