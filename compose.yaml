@@ -1,10 +1,55 @@
 version: '3'
 services:
-  app:
-    hostname: antikythera-k8s.local
+  app1:
+    hostname: antikythera-k8s-1.local
     tty: true
     build: .
     # volumes:
     #   - ./:/app
     ports:
       - 8082:8080
+    networks:
+      app_net:
+        ipv4_address: 192.168.100.11
+    extra_hosts:
+      - "antikythera-k8s-2.local:192.168.100.12"
+      - "antikythera-k8s-3.local:192.168.100.13"
+      - "testgear.local:127.0.0.1"
+  app2:
+    hostname: antikythera-k8s-2.local
+    tty: true
+    build: .
+    # volumes:
+    #   - ./:/app
+    ports:
+      - 8083:8080
+    networks:
+      app_net:
+        ipv4_address: 192.168.100.12
+    extra_hosts:
+      - "antikythera-k8s-1.local:192.168.100.11"
+      - "antikythera-k8s-3.local:192.168.100.13"
+      - "testgear.local:127.0.0.1"
+  app3:
+    hostname: antikythera-k8s-3.local
+    tty: true
+    build: .
+    # volumes:
+    #   - ./:/app
+    ports:
+      - 8084:8080
+    networks:
+      app_net:
+        ipv4_address: 192.168.100.13
+    extra_hosts:
+      - "antikythera-k8s-1.local:192.168.100.11"
+      - "antikythera-k8s-2.local:192.168.100.12"
+      - "testgear.local:127.0.0.1"
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.100.0/24
