@@ -6,5 +6,5 @@ mkdir gears
 (cd gears && git clone https://github.com/access-company/testgear.git)
 
 rm -rf deps/antikythera/tmp
-mix antikythera_local.start gears/testgear
+mix antikythera_k8s.start gears/testgear
 sleep infinity

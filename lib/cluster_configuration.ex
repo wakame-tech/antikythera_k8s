@@ -18,7 +18,9 @@ defmodule AntikytheraK8s.ClusterConfiguration do
     |> Enum.filter(fn item ->
       item["kind"] == "Pod" && item["metadata"]["labels"]["app"] == label_app
     end)
-    |> Enum.map(fn item -> {item["status"]["podIP"], item["status"]["phase"] == "Running"} end)
+    |> Enum.map(fn item ->
+      {item["status"]["podIP"], item["status"]["phase"] == "Running"}
+    end)
     |> Map.new()
   end
 
