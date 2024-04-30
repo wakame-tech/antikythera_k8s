@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: antikythera-k8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: antikythera-k8s
+  template:
+    metadata:
+      labels:
+        app: antikythera-k8s
+    spec:
+      serviceAccountName: internal-kubectl
+      containers:
+        - name: antikythera-k8s
+          image: wakametech/antikythera-k8s:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: antikythera-k8s
+spec:
+  type: LoadBalancer
+  selector:
+    app: antikythera-k8s
+  ports:
+    - port: 80
+      targetPort: 8080
