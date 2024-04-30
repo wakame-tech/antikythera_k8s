@@ -12,6 +12,7 @@ spec:
       labels:
         app: antikythera-k8s
     spec:
+      serviceAccountName: internal-kubectl
       containers:
         - name: antikythera-k8s
           image: wakametech/antikythera-k8s:latest
